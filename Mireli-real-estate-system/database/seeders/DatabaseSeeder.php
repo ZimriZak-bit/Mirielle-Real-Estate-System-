@@ -2,24 +2,24 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
+     *
+     * Pair 1 wires the seeders together in dependency order (interface I9).
+     * When another pair adds a seeder, they add one line below, in this order:
+     * users, properties (Pair 2), viewings (Pair 3), interest rates and demo payments (Pair 4).
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            UserSeeder::class,
+            // PropertySeeder::class,      // Pair 2
+            // ViewingSeeder::class,       // Pair 3
+            // InterestRateSeeder::class,  // Pair 4
         ]);
     }
 }

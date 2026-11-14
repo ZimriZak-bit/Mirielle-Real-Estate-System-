@@ -18,7 +18,7 @@ class UserFactory extends Factory
     protected static ?string $password;
 
     /**
-     * Define the model's default state.
+     * Define the model's default state (a client).
      *
      * @return array<string, mixed>
      */
@@ -27,10 +27,22 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'phone' => '07'.fake()->numerify('########'),
+            'role' => User::ROLE_CLIENT,
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function management(): static
+    {
+        return $this->state(fn (array $attributes) => ['role' => User::ROLE_MANAGEMENT]);
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => ['role' => User::ROLE_ADMIN]);
     }
 
     /**

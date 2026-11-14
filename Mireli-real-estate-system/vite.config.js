@@ -10,7 +10,11 @@ export default defineConfig({
             refresh: true,
             fonts: [
                 bunny('Instrument Sans', {
-                    weights: [400, 500, 600],
+                    weights: [400, 500, 600, 700],
+                }),
+                // Serif used for the logo and headings (the small-caps look).
+                bunny('Cormorant Garamond', {
+                    weights: [500, 600, 700],
                 }),
             ],
         }),
