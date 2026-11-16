@@ -74,7 +74,8 @@
                             <span>{{ $property->size }}</span>
                         </div>
                         
-                        <a href="#" class="block w-full text-center bg-gray-100 text-gray-800 py-2 rounded-md hover:bg-gray-200">View Details</a>
+                        <!-- UPDATED: View Details button links to the show route -->
+                        <a href="{{ route('properties.show', $property->id) }}" class="block w-full text-center bg-gray-100 text-gray-800 py-2 rounded-md hover:bg-gray-200">View Details</a>
                     </div>
                 </div>
             @empty

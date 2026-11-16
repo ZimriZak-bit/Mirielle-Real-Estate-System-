@@ -36,4 +36,10 @@ class PropertyController extends Controller
         // Return the view and pass the properties to it
         return view('properties.index', compact('properties'));
     }
+
+    // This is the page that shows a single house
+    public function show(Property $property)
+    {
+        return view('properties.show', compact('property'));
+    }
 }
