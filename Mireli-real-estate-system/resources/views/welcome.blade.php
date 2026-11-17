@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('title', 'Mireli Real Estate')
@@ -6,17 +7,27 @@
     <section class="hero">
         <div class="container">
             <h1>Find a home worth keeping</h1>
+
             <p>
-                Browse houses, book a viewing, secure your home with a deposit and pay
-                the balance in full or in monthly installments, all in one place.
+                Discover available homes, explore their features and find
+                the perfect place to call home.
             </p>
+
             <div class="hero-actions">
                 @guest
-                    <a href="{{ route('register') }}" class="btn btn-light">Create an account</a>
-                    <a href="{{ route('login') }}" class="btn btn-outline-light">Log in</a>
+                    <a href="{{ route('register') }}" class="btn btn-light">
+                        Create an account
+                    </a>
+
+                    <a href="{{ route('login') }}" class="btn btn-outline-light">
+                        Log in
+                    </a>
                 @endguest
+
                 @auth
-                    <a href="{{ route('dashboard') }}" class="btn btn-light">Go to my dashboard</a>
+                    <a href="{{ route('properties.index') }}" class="btn btn-light">
+                        Browse Properties
+                    </a>
                 @endauth
             </div>
         </div>
@@ -24,41 +35,155 @@
 @endsection
 
 @section('content')
+
+    {{-- HOW IT WORKS --}}
     <h2 class="section-title">How it works</h2>
+
     <div class="grid grid-4">
-        <div class="card"><div class="card-body">
-            <div class="step-number">1</div>
-            <h3>Browse</h3>
-            <p class="text-muted">Search houses by price and location and open any listing for details.</p>
-        </div></div>
-        <div class="card"><div class="card-body">
-            <div class="step-number">2</div>
-            <h3>View</h3>
-            <p class="text-muted">Request a viewing. Our team approves it and confirms the time.</p>
-        </div></div>
-        <div class="card"><div class="card-body">
-            <div class="step-number">3</div>
-            <h3>Secure</h3>
-            <p class="text-muted">Pay the deposit to reserve the house while you finish the purchase.</p>
-        </div></div>
-        <div class="card"><div class="card-body">
-            <div class="step-number">4</div>
-            <h3>Pay</h3>
-            <p class="text-muted">Pay the balance in full or choose a monthly plan that suits you.</p>
-        </div></div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="step-number">1</div>
+                <h3>Browse</h3>
+                <p class="text-muted">
+                    Explore available houses by location and price.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="step-number">2</div>
+                <h3>View</h3>
+                <p class="text-muted">
+                    Request a viewing and explore your preferred property.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="step-number">3</div>
+                <h3>Apply</h3>
+                <p class="text-muted">
+                    Submit your application for your preferred property.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="step-number">4</div>
+                <h3>Move In</h3>
+                <p class="text-muted">
+                    Complete the process and prepare to move into your home.
+                </p>
+            </div>
+        </div>
+
     </div>
 
-    <h2 class="section-title">Recently launched</h2>
-    {{-- PAIR 2: replace these three placeholder cards with the newest properties from the database --}}
-    <div class="grid grid-3">
-        @foreach ([['ph-1', 'Featured house'], ['ph-2', 'Featured house'], ['ph-3', 'Featured house']] as [$class, $label])
-            <div class="card">
-                <div class="card-image {{ $class }}"></div>
-                <div class="card-body">
-                    <p class="card-title">{{ $label }}</p>
-                    <p class="text-muted">Listings will appear here once the catalogue is ready.</p>
-                </div>
-            </div>
-        @endforeach
+
+    {{-- DYNAMIC PROPERTY LISTINGS --}}
+    <div class="properties-heading" style="margin-top: 3rem;">
+        <div>
+            <h2 class="section-title">Recently Listed Properties</h2>
+            <p class="text-muted">
+                Explore some of the latest available homes on Mireli.
+            </p>
+        </div>
+
+        <a href="{{ route('properties.index') }}" class="btn">
+            View All Properties
+        </a>
     </div>
+
+    @if(isset($featuredProperties) && $featuredProperties->count() > 0)
+
+        <div class="property-card-grid">
+
+            @foreach($featuredProperties as $property)
+
+                <article class="property-management-card">
+
+                    {{-- PROPERTY PHOTO --}}
+                    <a
+                        href="{{ route('properties.show', $property->id) }}"
+                        style="display: block; text-decoration: none;"
+                    >
+                        <div class="property-management-image">
+
+                            @if($property->images->first())
+
+                                @php
+                                    $imagePath = $property->images->first()->image_url;
+
+                                    $imageUrl = str_starts_with($imagePath, 'images/')
+                                        ? asset($imagePath)
+                                        : asset('storage/' . $imagePath);
+                                @endphp
+
+                                <img
+                                    src="{{ $imageUrl }}"
+                                    alt="{{ $property->title }}"
+                                    loading="lazy"
+                                >
+
+                            @else
+
+                                <div class="property-no-image">
+                                    No Image Available
+                                </div>
+
+                            @endif
+
+                            <span class="badge badge-available">
+                                Available
+                            </span>
+
+                        </div>
+                    </a>
+
+                    {{-- PROPERTY INFORMATION --}}
+                    <div class="property-management-body">
+
+                        <h3>{{ $property->title }}</h3>
+
+                        <p class="text-muted">
+                            {{ $property->location }}
+                        </p>
+
+                        <p class="property-management-price">
+                            KES {{ number_format($property->price, 2) }}
+                        </p>
+
+                        <div class="property-management-details">
+                            <span>{{ $property->bedrooms }} Bedrooms</span>
+                            <span>{{ $property->size }}</span>
+                        </div>
+
+                        <a
+                            href="{{ route('properties.show', $property->id) }}"
+                            class="btn"
+                        >
+                            View Property Details
+                        </a>
+
+                    </div>
+
+                </article>
+
+            @endforeach
+
+        </div>
+
+    @else
+
+        <div class="placeholder-box">
+            <h3>No Properties Available</h3>
+            <p>New property listings will appear here once they are added.</p>
+        </div>
+
+    @endif
+
 @endsection
