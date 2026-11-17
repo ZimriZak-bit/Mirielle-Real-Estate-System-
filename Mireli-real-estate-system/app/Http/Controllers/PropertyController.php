@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
 {
     // --- CLIENT METHODS ---
     public function index(Request $request)
     {
-        $query = Property::query();
+        // 5. ONLY show available houses to clients
+        $query = Property::where('status', Property::AVAILABLE);
 
         if ($request->filled('location')) {
             $query->where('location', 'like', '%' . $request->location . '%');
@@ -20,9 +22,6 @@ class PropertyController extends Controller
         }
         if ($request->filled('max_price')) {
             $query->where('price', '<=', $request->max_price);
-        }
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
         }
 
         $properties = $query->latest()->paginate(6);
@@ -57,10 +56,17 @@ class PropertyController extends Controller
             'deposit_amount' => 'required|numeric|min:0|max:' . $request->price,
             'amenities' => 'nullable|string',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048' // 3. Image validation
         ]);
 
         $validated['status'] = Property::AVAILABLE;
-        Property::create($validated);
+        $property = Property::create($validated);
+
+        // 2 & 3. Save the image
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('properties', 'public');
+            $property->images()->create(['image_url' => $path, 'is_primary' => true]);
+        }
 
         return redirect()->route('management.properties.index')->with('success', 'Property created successfully!');
     }
@@ -81,9 +87,21 @@ class PropertyController extends Controller
             'deposit_amount' => 'required|numeric|min:0|max:' . $request->price,
             'amenities' => 'nullable|string',
             'description' => 'nullable|string',
+            'status' => 'required|string|in:available,reserved,sold', // 6. Status update
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         $property->update($validated);
+
+        if ($request->hasFile('image')) {
+            // Delete old images first (optional)
+            foreach($property->images as $img) {
+                Storage::disk('public')->delete($img->image_url);
+                $img->delete();
+            }
+            $path = $request->file('image')->store('properties', 'public');
+            $property->images()->create(['image_url' => $path, 'is_primary' => true]);
+        }
 
         return redirect()->route('management.properties.index')->with('success', 'Property updated successfully!');
     }
