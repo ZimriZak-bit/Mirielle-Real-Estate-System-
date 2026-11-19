@@ -39,7 +39,6 @@
             <a href="{{ route('management.properties.index') }}" class="{{ request()->routeIs('management.properties.*') ? 'is-active' : '' }}">Properties</a>
             {{-- PAIR 3 --}}
             <a href="{{ route('management.viewings.index') }}" class="{{ request()->routeIs('management.viewings.*') ? 'is-active' : '' }}">Viewings</a>
-            <a href="{{ route('management.customizations.index') }}" class="{{ request()->routeIs('management.customizations.*') ? 'is-active' : '' }}">Customization</a>
             {{-- PAIR 4 --}}
             <a href="{{ route('management.payments.index') }}" class="{{ request()->routeIs('management.payments.*') ? 'is-active' : '' }}">Payments</a>
             <a href="{{ route('management.interest-rates.index') }}" class="{{ request()->routeIs('management.interest-rates.*') ? 'is-active' : '' }}">Interest rates</a>
