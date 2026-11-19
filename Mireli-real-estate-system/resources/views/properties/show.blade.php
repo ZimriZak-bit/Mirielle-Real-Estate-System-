@@ -106,9 +106,30 @@
                 or enquire about this property.
             </p>
 
-            <a href="{{ route('properties.index') }}" class="btn">
-                Explore More Properties
-            </a>
+            @auth
+                @if (auth()->user()->isClient())
+                    {{-- Interface I4: this button leads into Pair 3's viewing flow. --}}
+                    <a href="{{ route('viewings.create', $property) }}" class="btn">
+                        Request Viewing
+                    </a>
+
+                    <a href="{{ route('properties.index') }}" class="btn btn-outline mt-1">
+                        Explore More Properties
+                    </a>
+                @else
+                    <a href="{{ route('properties.index') }}" class="btn">
+                        Explore More Properties
+                    </a>
+                @endif
+            @else
+                <a href="{{ route('login') }}" class="btn">
+                    Log In to Request a Viewing
+                </a>
+
+                <a href="{{ route('properties.index') }}" class="btn btn-outline mt-1">
+                    Explore More Properties
+                </a>
+            @endauth
 
         </aside>
 
