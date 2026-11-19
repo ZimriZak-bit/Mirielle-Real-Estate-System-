@@ -1,33 +1,20 @@
 <?php
 
+use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| PAIR 2: Properties and catalogue
-|--------------------------------------------------------------------------
-| These are placeholders from Pair 1. Replace each closure with your real
-| controller. KEEP THE ROUTE NAMES: other pairs link to them.
-*/
+// --- CLIENT ROUTES ---
+Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');
+Route::get('/properties/{property}', [PropertyController::class, 'show'])->name('properties.show');
 
-Route::middleware(['auth', 'role:client'])->group(function () {
-    Route::get('/properties', fn () => view('placeholder', [
-        'title' => 'Properties',
-        'pair' => 'Pair 2',
-        'description' => 'Listing with search and filters (price, location, status).',
-    ]))->name('properties.index');
-
-    Route::get('/properties/{property}', fn ($property) => view('placeholder', [
-        'title' => 'Property details',
-        'pair' => 'Pair 2',
-        'description' => "Detail page for property {$property}, with the Request viewing and Pay deposit buttons (interface I4).",
-    ]))->name('properties.show');
-});
-
-Route::middleware(['auth', 'role:management'])->prefix('management')->group(function () {
-    Route::get('/properties', fn () => view('placeholder', [
-        'title' => 'Manage properties',
-        'pair' => 'Pair 2',
-        'description' => 'Create, edit and delete properties, including photos and the deposit amount.',
-    ]))->name('management.properties.index');
+// --- MANAGEMENT ROUTES ---
+Route::middleware(['auth'])->prefix('management')->group(function () {
+    Route::get('/properties', [PropertyController::class, 'manage'])->name('management.properties.index');
+    Route::get('/properties/create', [PropertyController::class, 'create'])->name('management.properties.create');
+    Route::post('/properties', [PropertyController::class, 'store'])->name('management.properties.store');
+    
+    // Edit, Update, Delete
+    Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('management.properties.edit');
+    Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('management.properties.update');
+    Route::delete('/properties/{property}', [PropertyController::class, 'destroy'])->name('management.properties.destroy');
 });
