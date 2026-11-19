@@ -1,84 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $property->title }} | Mireli</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 text-gray-800">
 
-    <!-- Navigation Bar -->
-    <nav class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-600">Mireli Real Estate</h1>
-            <div class="space-x-4">
-                <a href="/properties" class="text-blue-600 font-semibold">&larr; Back to Properties</a>
-            </div>
+@extends('layouts.app')
+
+@section('title', $property->title . ' | Mireli Real Estate')
+
+@section('content')
+
+<div class="property-details-page">
+
+    <div class="property-back">
+        <a href="{{ route('properties.index') }}" class="back-link">
+            &larr; Back to Properties
+        </a>
+    </div>
+
+    <div class="property-details-header">
+        <div>
+            <p class="property-location">{{ $property->location }}</p>
+            <h1>{{ $property->title }}</h1>
         </div>
-    </nav>
 
-    <div class="container mx-auto p-6 max-w-4xl">
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <!-- Header Image Placeholder -->
-            <div class="h-64 bg-gray-300 flex items-center justify-center text-gray-500">
-                Property Image Placeholder
-            </div>
-            
-            <div class="p-8">
-                <div class="flex justify-between items-start mb-4">
-                    <h2 class="text-3xl font-bold">{{ $property->title }}</h2>
-                    @if($property->status === 'available')
-                        <span class="bg-green-100 text-green-800 font-semibold px-3 py-1 rounded">Available</span>
-                    @elseif($property->status === 'reserved')
-                        <span class="bg-yellow-100 text-yellow-800 font-semibold px-3 py-1 rounded">Reserved</span>
-                    @else
-                        <span class="bg-red-100 text-red-800 font-semibold px-3 py-1 rounded">Sold</span>
-                    @endif
-                </div>
-
-                <p class="text-gray-600 text-lg mb-6">{{ $property->location }}</p>
-
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <div class="bg-gray-50 p-4 rounded">
-                        <p class="text-sm text-gray-500">Price</p>
-                        <p class="text-xl font-bold text-blue-600">KES {{ number_format($property->price, 2) }}</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded">
-                        <p class="text-sm text-gray-500">Deposit Required</p>
-                        <p class="text-xl font-bold text-gray-800">KES {{ number_format($property->deposit_amount, 2) }}</p>
-                    </div>
-                </div>
-
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold mb-2">Details</h3>
-                    <p class="text-gray-700 mb-2"><strong>Bedrooms:</strong> {{ $property->bedrooms }}</p>
-                    <p class="text-gray-700 mb-2"><strong>Size:</strong> {{ $property->size }}</p>
-                    <p class="text-gray-700"><strong>Amenities:</strong> {{ $property->amenities ?? 'N/A' }}</p>
-                </div>
-
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold mb-2">Description</h3>
-                    <p class="text-gray-700">{{ $property->description ?? 'No description provided.' }}</p>
-                </div>
-
-                <!-- Buttons for Pair 3 and Pair 4 -->
-                <div class="border-t pt-6 flex gap-4">
-                    <!-- Request Viewing goes to Pair 3 -->
-                    <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 w-full text-center">
-                        Request Viewing
-                    </a>
-                    
-                    <!-- Pay Deposit goes to Pair 4 -->
-                    @if($property->isAvailable())
-                        <a href="#" class="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 w-full text-center">
-                            Pay Deposit
-                        </a>
-                    @endif
-                </div>
-            </div>
+        <div class="property-details-price">
+            <span>Asking Price</span>
+            <h2>KES {{ number_format($property->price, 2) }}</h2>
         </div>
     </div>
 
-</body>
-</html>
+    {{-- Property Photos --}}
+    <div class="property-gallery">
+
+        @forelse($property->images as $image)
+
+            @php
+                $imagePath = $image->image_url;
+
+                $imageUrl = str_starts_with($imagePath, 'images/')
+                    ? asset($imagePath)
+                    : asset('storage/' . $imagePath);
+            @endphp
+
+            <div class="property-gallery-image">
+                <img
+                    src="{{ $imageUrl }}"
+                    alt="{{ $property->title }}"
+                >
+            </div>
+
+        @empty
+
+            <div class="property-gallery-empty">
+                <p>No photos are available for this property yet.</p>
+            </div>
+
+        @endforelse
+
+    </div>
+
+    {{-- Property Information --}}
+    <div class="property-details-content">
+
+        <div class="property-main-information">
+
+            <h2>Property Overview</h2>
+
+            <p>{{ $property->description }}</p>
+
+            <div class="property-information-grid">
+
+                <div class="property-information-item">
+                    <span>Bedrooms</span>
+                    <strong>{{ $property->bedrooms }}</strong>
+                </div>
+
+                <div class="property-information-item">
+                    <span>Property Size</span>
+                    <strong>{{ $property->size }}</strong>
+                </div>
+
+                <div class="property-information-item">
+                    <span>Location</span>
+                    <strong>{{ $property->location }}</strong>
+                </div>
+
+                <div class="property-information-item">
+                    <span>Deposit</span>
+                    <strong>
+                        KES {{ number_format($property->deposit_amount, 2) }}
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="property-amenities">
+                <h2>Amenities</h2>
+                <p>{{ $property->amenities ?: 'No amenities listed.' }}</p>
+            </div>
+
+        </div>
+
+        <aside class="property-contact-card">
+
+            <h3>Interested in this Property?</h3>
+
+            <p>
+                Contact our management team to arrange a viewing
+                or enquire about this property.
+            </p>
+
+            <a href="{{ route('properties.index') }}" class="btn">
+                Explore More Properties
+            </a>
+
+        </aside>
+
+    </div>
+
+</div>
+
+@endsection
