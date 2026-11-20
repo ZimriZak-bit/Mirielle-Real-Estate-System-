@@ -17,6 +17,11 @@
             <p class="text-muted">Approve, reschedule and complete viewing requests.</p>
             <span class="more">Manage &rarr;</span>
         </div></a>
+        <a class="card card-link" href="{{ route('management.customizations.index') }}"><div class="card-body">
+            <p class="card-title">Customization</p>
+            <p class="text-muted">See the finishes and furnishing clients have chosen.</p>
+            <span class="more">View &rarr;</span>
+        </div></a>
         <a class="card card-link" href="{{ route('management.payments.index') }}"><div class="card-body">
             <p class="card-title">Payments</p>
             <p class="text-muted">Confirm or cancel pending payments.</p>
