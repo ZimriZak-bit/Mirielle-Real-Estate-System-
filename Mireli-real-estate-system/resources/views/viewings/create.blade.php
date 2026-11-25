@@ -35,7 +35,7 @@
                 </p>
                 <p class="text-muted">Price: KES {{ number_format((float) $property->price, 2) }}</p>
                 <p class="text-muted">Deposit: KES {{ number_format((float) $property->deposit_amount, 2) }}</p>
-                <span class="badge badge-{{ $property->status }}">{{ $property->status }}</span>
+                <span  class="badge badge-{{ $property->status }}">{{ $property->status }}</span>
             </div>
         </div>
 

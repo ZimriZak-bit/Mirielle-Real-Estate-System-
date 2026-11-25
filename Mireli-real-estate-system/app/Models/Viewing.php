@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Live viewings (requested, approved, reschedule_requested) hold their slot.
  * Cancelled and rejected viewings keep their row for history but free the slot.
  */
-class Viewing extends Model
+class Viewing  extends Model
 {
     public const STATUS_REQUESTED = 'requested';
 
@@ -34,7 +34,7 @@ class Viewing extends Model
     public const STATUS_CANCELLED = 'cancelled';
 
     /** The frozen vocabulary from interface I10, in display order. */
-    public const STATUSES = [
+    public const  STATUSES = [
         self::STATUS_REQUESTED,
         self::STATUS_APPROVED,
         self::STATUS_RESCHEDULE_REQUESTED,

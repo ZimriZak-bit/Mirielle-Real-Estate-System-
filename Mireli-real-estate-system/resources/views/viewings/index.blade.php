@@ -4,7 +4,7 @@
 
 @section('content')
     <h1 class="page-title">My viewings</h1>
-    <p class="page-lead">
+    <p  class="page-lead">
         Track every request, cancel a visit, or propose another time once management has approved one.
     </p>
 

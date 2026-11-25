@@ -23,9 +23,9 @@ class CustomizationController extends Controller
         $client = $request->user();
 
         $properties = Property::query()
-            ->where('buyer_id', $client->getKey())
-            ->whereIn('status', [Property::RESERVED, Property::SOLD])
-            ->orderBy('title')
+            ->where( 'buyer_id', $client->getKey() )
+            ->whereIn( 'status', [Property::RESERVED, Property::SOLD] )
+            ->orderBy('title' )
             ->get();
 
         $customizations = Customization::query()

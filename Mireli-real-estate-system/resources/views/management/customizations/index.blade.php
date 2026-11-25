@@ -4,7 +4,7 @@
 
 @section('content')
     <h1 class="page-title">Client customizations</h1>
-    <p class="page-lead">
+    <p  class="page-lead">
         The preferences clients have saved for the houses they reserved or bought. This page is read-only.
     </p>
 

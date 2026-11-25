@@ -22,7 +22,7 @@
 
     @if ($properties->isEmpty())
         <div class="placeholder-box mt-3">
-            <span class="badge">Nothing to customize yet</span>
+            <span  class="badge">Nothing to customize yet</span>
             <h3>Reserve a house first</h3>
             <p class="text-muted">
                 Customization opens once a deposit has been confirmed and the house is Reserved for you.
@@ -78,7 +78,7 @@
                                           maxlength="1000">{{ old('notes', $customization?->notes) }}</textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-block">
+                            <button type="submit"  class="btn btn-block">
                                 {{ $customization ? 'Update preferences' : 'Save preferences' }}
                             </button>
                         </form>

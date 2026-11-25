@@ -14,14 +14,14 @@ use Illuminate\View\View;
  * PAIR 3: the client side of viewings. Management's side lives in
  * App\Http\Controllers\Management\ViewingController.
  */
-class ViewingController extends Controller
+class ViewingController  extends Controller
 {
     public function __construct(private readonly ViewingService $viewings) {}
 
     /** My viewings: everything this client has requested, newest slot first. */
     public function index(Request $request): View
     {
-        $viewings = Viewing::query()
+        $viewings = Viewing::query( )
             ->with('property')
             ->where('client_id', $request->user()->getKey())
             ->orderByDesc('scheduled_at')
@@ -31,17 +31,17 @@ class ViewingController extends Controller
     }
 
     /** Request form, opened from the property detail page (interface I4). */
-    public function create(Property $property): View|RedirectResponse
+    public function  create(Property $property): View|RedirectResponse
     {
         if (! $property->isAvailable()) {
             return redirect()->route('properties.index')
                 ->with('error', 'That property is not available for viewing.');
         }
 
-        return view('viewings.create', ['property' => $property]);
+        return view( 'viewings.create', ['property' => $property]);
     }
 
-    public function store(Request $request, Property $property): RedirectResponse
+    public function store (Request $request, Property $property): RedirectResponse
     {
         $data = $request->validate([
             'scheduled_at' => ['required', 'date', 'after:now'],

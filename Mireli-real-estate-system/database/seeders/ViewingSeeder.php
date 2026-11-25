@@ -32,7 +32,7 @@ class ViewingSeeder extends Seeder
 
         $managerId = User::query()->where('email', 'manager@mireli.test')->value('id');
 
-        // The three cheapest available houses, so the demo uses stable, known data.
+        // The three cheapest available houses,  so the demo uses stable, known data.
         $properties = Property::query()
             ->where('status', Property::AVAILABLE)
             ->orderBy('id')
@@ -52,7 +52,7 @@ class ViewingSeeder extends Seeder
                 'scheduled_at' => now()->subDays(2)->setTime(10, 0),
                 'status' => Viewing::STATUS_COMPLETED,
                 'completed_at' => now()->subDays(2)->setTime(11, 0),
-                'management_note' => 'Visit completed. The client may now pay the deposit.',
+                'management_note' => 'Visit completed.  The client may now pay the deposit.',
                 'decided_by' => $managerId,
             ],
         );

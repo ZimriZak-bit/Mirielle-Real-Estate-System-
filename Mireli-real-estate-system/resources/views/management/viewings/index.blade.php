@@ -21,7 +21,7 @@
     @endif
 
     <div class="mt-2">
-        <a class="btn {{ $status === null ? '' : 'btn-outline' }}" href="{{ route('management.viewings.index') }}">All</a>
+        <a  class="btn {{ $status === null ? '' : 'btn-outline' }}" href="{{ route('management.viewings.index') }}">All</a>
         @foreach ($statuses as $option)
             <a class="btn {{ $status === $option ? '' : 'btn-outline' }}"
                href="{{ route('management.viewings.index', ['status' => $option]) }}">{{ ucfirst(str_replace('_', ' ', $option)) }}</a>

@@ -13,7 +13,7 @@ use Illuminate\Database\Seeder;
  *
  * Safe to run more than once: preferences are matched per client and property.
  */
-class CustomizationSeeder extends Seeder
+class CustomizationSeeder  extends Seeder
 {
     public function run(): void
     {

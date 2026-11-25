@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * property. There is exactly one set per client per property, and the client
  * may edit it while they own the house (interface I7).
  */
-class Customization extends Model
+class  Customization extends Model
 {
-    public const FURNISHED = 'furnished';
+    public  const FURNISHED = 'furnished';
 
     public const SEMI_FURNISHED = 'semi_furnished';
 
@@ -34,7 +34,7 @@ class Customization extends Model
         'notes',
     ];
 
-    public function property(): BelongsTo
+    public  function property(): BelongsTo
     {
         return $this->belongsTo(Property::class);
     }
