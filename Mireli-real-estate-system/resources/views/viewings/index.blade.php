@@ -9,7 +9,7 @@
     </p>
 
     @if ($errors->any())
-        <div class="alert alert-error" role="alert">
+         <div class="alert alert-error" role="alert">
             <strong>That did not work:</strong>
             <ul>
                 @foreach ($errors->all() as $message)
@@ -80,7 +80,7 @@
                                         <button type="submit" class="btn btn-outline">Cancel</button>
                                     </form>
                                 @endif
-
+/**Done by Jewel */
                                 @if ($viewing->isApproved())
                                     <form method="POST" action="{{ route('viewings.reschedule', $viewing) }}" class="mt-2">
                                         @csrf

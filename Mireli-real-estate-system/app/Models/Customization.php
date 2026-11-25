@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ class  Customization extends Model
     public const UNFURNISHED = 'unfurnished';
 
     /** Frozen furnishing values for the dropdown. */
+    /**Done by Jewel */
     public const FURNISHING_STATUSES = [
         self::FURNISHED,
         self::SEMI_FURNISHED,

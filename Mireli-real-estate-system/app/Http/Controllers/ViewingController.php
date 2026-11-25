@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Property;
 use App\Models\Viewing;
 use App\Services\ViewingService;
@@ -31,6 +32,7 @@ class ViewingController  extends Controller
     }
 
     /** Request form, opened from the property detail page (interface I4). */
+    /**Done by Jewel */
     public function  create(Property $property): View|RedirectResponse
     {
         if (! $property->isAvailable()) {

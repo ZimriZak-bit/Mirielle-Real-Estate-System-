@@ -9,7 +9,7 @@
     </p>
 
     @if ($customizations->isEmpty())
-        <div class="placeholder-box mt-3">
+         <div class="placeholder-box mt-3">
             <span class="badge">Nothing here yet</span>
             <h3>No client has saved preferences</h3>
             <p class="text-muted">A client can customize a house once it is Reserved or Sold for them.</p>
@@ -29,6 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    /**Done by Jewel */
                     @foreach ($customizations as $customization)
                         <tr>
                             <td>

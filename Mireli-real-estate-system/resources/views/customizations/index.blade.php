@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Customization | Mireli')
+ @section('title', 'Customization | Mireli')
 
 @section('content')
     <h1 class="page-title">Customization</h1>
@@ -19,7 +19,7 @@
             </ul>
         </div>
     @endif
-
+/**Done by Jewel */
     @if ($properties->isEmpty())
         <div class="placeholder-box mt-3">
             <span  class="badge">Nothing to customize yet</span>

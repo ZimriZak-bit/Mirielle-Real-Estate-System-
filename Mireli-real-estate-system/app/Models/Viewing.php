@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models;
 
 use Carbon\CarbonInterface;
@@ -93,6 +94,7 @@ class Viewing  extends Model
     }
 
     /** Requests waiting for management: new requests and proposed new times. */
+    /**Done by Jewel */
     public function scopeAwaitingManagement(Builder $query): Builder
     {
         return $query->whereIn('status', [

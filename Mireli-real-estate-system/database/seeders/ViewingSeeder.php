@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Database\Seeders;
 
 use App\Models\Property;
@@ -56,7 +57,7 @@ class ViewingSeeder extends Seeder
                 'decided_by' => $managerId,
             ],
         );
-
+/**Done by Jewel */
         // An approved visit coming up in two days.
         Viewing::updateOrCreate(
             ['property_id' => $properties[1]->id, 'client_id' => $brian->id],
