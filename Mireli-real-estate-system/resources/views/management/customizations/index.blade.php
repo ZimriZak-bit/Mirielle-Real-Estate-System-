@@ -4,12 +4,12 @@
 
 @section('content')
     <h1 class="page-title">Client customizations</h1>
-    <p class="page-lead">
+    <p  class="page-lead">
         The preferences clients have saved for the houses they reserved or bought. This page is read-only.
     </p>
 
     @if ($customizations->isEmpty())
-        <div class="placeholder-box mt-3">
+         <div class="placeholder-box mt-3">
             <span class="badge">Nothing here yet</span>
             <h3>No client has saved preferences</h3>
             <p class="text-muted">A client can customize a house once it is Reserved or Sold for them.</p>
@@ -29,14 +29,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    /**Done by Jewel */                   
                     @foreach ($customizations as $customization)
+
                         <tr>
                             <td>
                                 {{ $customization->client->name }}
                                 <div class="text-muted">{{ $customization->client->phone ?? $customization->client->email }}</div>
                             </td>
                             <td>
-                                {{ $customization->property->title }}
+                                {{  $customization->property->title }}
                                 <div class="text-muted">
                                     {{ $customization->property->location }}
                                     <span class="badge badge-{{ $customization->property->status }}">{{ $customization->property->status }}</span>

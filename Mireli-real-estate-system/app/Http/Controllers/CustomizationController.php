@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Customization;
@@ -23,9 +24,9 @@ class CustomizationController extends Controller
         $client = $request->user();
 
         $properties = Property::query()
-            ->where('buyer_id', $client->getKey())
-            ->whereIn('status', [Property::RESERVED, Property::SOLD])
-            ->orderBy('title')
+            ->where( 'buyer_id', $client->getKey() )
+            ->whereIn( 'status', [Property::RESERVED, Property::SOLD] )
+            ->orderBy('title' )
             ->get();
 
         $customizations = Customization::query()
@@ -39,14 +40,14 @@ class CustomizationController extends Controller
             'customizations' => $customizations,
         ]);
     }
-
+/**Done by Jewel */
     public function store(Request $request, Property $property): RedirectResponse
     {
         $client = $request->user();
 
-        abort_unless(
+        abort_unless(  
             $property->buyer_id === $client->getKey()
-                && in_array($property->status, [Property::RESERVED, Property::SOLD], true),
+                && in_array($property->status, [ Property::RESERVED, Property::SOLD], true),
             403,
             'You can only customize a house you have reserved or bought.',
         );

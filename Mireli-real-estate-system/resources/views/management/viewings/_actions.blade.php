@@ -10,8 +10,8 @@
 
     <form method="POST" action="{{ route('management.viewings.reject', $viewing) }}" class="mt-2">
         @csrf
-        <input class="form-control" type="text" name="management_note" maxlength="500"
-               placeholder="Reason for rejecting" required>
+        <input  class="form-control" type="text" name="management_note" maxlength="500"
+                placeholder="Reason for rejecting" required>
         <button type="submit" class="btn btn-outline mt-1">Reject</button>
     </form>
 @elseif ($viewing->isApproved())
@@ -20,6 +20,8 @@
         @csrf
         <button type="submit" class="btn">Mark completed</button>
     </form>
+
+/**Done by Jewel */
 
     <form method="POST" action="{{ route('management.viewings.reschedule', $viewing) }}" class="mt-2">
         @csrf

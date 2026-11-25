@@ -10,7 +10,7 @@
     </p>
 
     @if ($errors->any())
-        <div class="alert alert-error" role="alert">
+         <div class="alert alert-error" role="alert">
             <strong>That did not work:</strong>
             <ul>
                 @foreach ($errors->all() as $message)
@@ -20,8 +20,10 @@
         </div>
     @endif
 
+/**Done by Jewel */
+
     <div class="mt-2">
-        <a class="btn {{ $status === null ? '' : 'btn-outline' }}" href="{{ route('management.viewings.index') }}">All</a>
+        <a  class="btn {{ $status === null ? '' : 'btn-outline' }}" href="{{ route('management.viewings.index') }}">All</a>
         @foreach ($statuses as $option)
             <a class="btn {{ $status === $option ? '' : 'btn-outline' }}"
                href="{{ route('management.viewings.index', ['status' => $option]) }}">{{ ucfirst(str_replace('_', ' ', $option)) }}</a>

@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Database\Seeders;
 
 use App\Models\Customization;
@@ -13,7 +14,7 @@ use Illuminate\Database\Seeder;
  *
  * Safe to run more than once: preferences are matched per client and property.
  */
-class CustomizationSeeder extends Seeder
+class CustomizationSeeder  extends Seeder
 {
     public function run(): void
     {
@@ -25,15 +26,15 @@ class CustomizationSeeder extends Seeder
             ->first();
 
         if (! $property) {
-            $this->command?->warn('CustomizationSeeder skipped: run PropertySeeder first (needs a reserved house with a buyer).');
+            $this->command?->warn(' CustomizationSeeder skipped: run PropertySeeder first (needs a reserved house with a buyer).');
 
             return;
         }
-
+/**Done by Jewel */
         Customization::updateOrCreate(
             [
                 'property_id' => $property->id,
-                'client_id' => $property->buyer_id,
+                'client_id' =>  $property->buyer_id,
             ],
             [
                 'furniture_arrangement' => 'Open plan living room with a corner sofa',

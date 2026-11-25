@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -10,22 +11,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * property. There is exactly one set per client per property, and the client
  * may edit it while they own the house (interface I7).
  */
-class Customization extends Model
+class  Customization extends Model
 {
-    public const FURNISHED = 'furnished';
+    public  const FURNISHED = 'furnished';
 
     public const SEMI_FURNISHED = 'semi_furnished';
 
     public const UNFURNISHED = 'unfurnished';
 
     /** Frozen furnishing values for the dropdown. */
+    /**Done by Jewel */
     public const FURNISHING_STATUSES = [
         self::FURNISHED,
         self::SEMI_FURNISHED,
         self::UNFURNISHED,
     ];
 
-    protected $fillable = [
+    protected  $fillable = [
         'property_id',
         'client_id',
         'furniture_arrangement',
@@ -34,7 +36,7 @@ class Customization extends Model
         'notes',
     ];
 
-    public function property(): BelongsTo
+    public  function property(): BelongsTo
     {
         return $this->belongsTo(Property::class);
     }
