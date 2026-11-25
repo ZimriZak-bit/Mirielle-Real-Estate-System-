@@ -6,13 +6,7 @@ use App\Models\Customization;
 use App\Models\Property;
 use Illuminate\Database\Seeder;
 
-/**
- * PAIR 3 demo data (interface I9): one saved set of customization preferences
- * for a house that is Reserved, so both the client form and the management
- * read-only page have something to show during the demo.
- *
- * Safe to run more than once: preferences are matched per client and property.
- */
+
 class CustomizationSeeder extends Seeder
 {
     public function run(): void

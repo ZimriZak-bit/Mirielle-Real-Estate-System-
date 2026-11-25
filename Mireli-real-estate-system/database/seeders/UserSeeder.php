@@ -5,11 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
-/**
- * Demo accounts for everyone (interface I9). All use the password "password".
- * Safe to run more than once: accounts are matched by email.
- * For local demo only; never keep these on a real server.
- */
+
+//  Demo accounts for everyone 
+
 class UserSeeder extends Seeder
 {
     public function run(): void

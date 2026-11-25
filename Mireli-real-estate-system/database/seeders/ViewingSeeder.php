@@ -7,15 +7,7 @@ use App\Models\User;
 use App\Models\Viewing;
 use Illuminate\Database\Seeder;
 
-/**
- * PAIR 3 demo data (interface I9).
- *
- * The agreed demo state includes one completed viewing, because a client may
- * only pay a deposit after a completed viewing (interface I5). It also gives
- * management one request and one approved visit to work with.
- *
- * Safe to run more than once: viewings are matched per client and property.
- */
+
 class ViewingSeeder extends Seeder
 {
     public function run(): void
