@@ -20,16 +20,14 @@ class  Customization extends Model
     public const UNFURNISHED = 'unfurnished';
 
     /** Frozen furnishing values for the dropdown. */
-
     /**Done by Jewel */
-    
     public const FURNISHING_STATUSES = [
         self::FURNISHED,
         self::SEMI_FURNISHED,
         self::UNFURNISHED,
     ];
 
-    protected $fillable = [
+    protected  $fillable = [
         'property_id',
         'client_id',
         'furniture_arrangement',
