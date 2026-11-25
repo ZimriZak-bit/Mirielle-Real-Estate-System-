@@ -29,17 +29,16 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    /**Done by Jewel */
-                    
+                    /**Done by Jewel */                   
                     @foreach ($customizations as $customization)
+
                         <tr>
                             <td>
                                 {{ $customization->client->name }}
                                 <div class="text-muted">{{ $customization->client->phone ?? $customization->client->email }}</div>
                             </td>
                             <td>
-                                {{ $customization->property->title }}
+                                {{  $customization->property->title }}
                                 <div class="text-muted">
                                     {{ $customization->property->location }}
                                     <span class="badge badge-{{ $customization->property->status }}">{{ $customization->property->status }}</span>
