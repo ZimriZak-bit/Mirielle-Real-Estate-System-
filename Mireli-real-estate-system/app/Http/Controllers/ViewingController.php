@@ -32,12 +32,10 @@ class ViewingController  extends Controller
     }
 
     /** Request form, opened from the property detail page (interface I4). */
-
-    /**Done by Jewel */
-    
+    /**Done by Jewel */   
     public function  create(Property $property): View|RedirectResponse
     {
-        if (! $property->isAvailable()) {
+        if (!$property->isAvailable()) {
             return redirect()->route('properties.index')
                 ->with('error', 'That property is not available for viewing.');
         }
