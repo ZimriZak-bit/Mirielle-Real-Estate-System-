@@ -1,5 +1,29 @@
 @extends('layouts.app')
 
+
+
+
+
+
+
+
+
+
+
+<!-- management-dashboard.blade.php -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 @section('title', 'Management | Mireli')
 
 @section('content')
