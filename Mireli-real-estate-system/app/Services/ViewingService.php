@@ -113,12 +113,12 @@ class ViewingService
     }
 
     /** Management accepts the proposed time or assigns a different one. */
-    public function reschedule(Viewing $viewing, User $manager, CarbonInterface $scheduledAt, ?string $note = null): Viewing
+    public  function reschedule(Viewing $viewing, User $manager, CarbonInterface $scheduledAt, ?string $note = null): Viewing
     {
         $this->ensureStatus(
             $viewing,
             [Viewing::STATUS_APPROVED, Viewing::STATUS_RESCHEDULE_REQUESTED],
-            'Only an approved viewing can be moved to another time.',
+            'Only an  approved viewing can be moved to another time.',
         );
 
         $this->ensureNotInThePast($scheduledAt, 'scheduled_at');
@@ -197,7 +197,7 @@ class ViewingService
     }
 
     /** @param  array<int, string>  $allowed */
-    private function ensureStatus(Viewing $viewing, array $allowed, string $message): void
+    private function  ensureStatus(Viewing $viewing, array $allowed, string $message): void
     {
         if (! in_array($viewing->status, $allowed, true)) {
             throw ValidationException::withMessages(['status' => $message]);
