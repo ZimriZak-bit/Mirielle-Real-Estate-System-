@@ -19,9 +19,7 @@
             </ul>
         </div>
     @endif
-
 /**Done by Jewel */
-
     @if ($properties->isEmpty())
         <div class="placeholder-box mt-3">
             <span  class="badge">Nothing to customize yet</span>
@@ -55,6 +53,7 @@
                                        placeholder="e.g. Open plan with a corner sofa">
                             </div>
 
+                            
                             <div class="form-group">
                                 <label for="colour-{{ $property->id }}">Colour scheme</label>
                                 <input id="colour-{{ $property->id }}" name="colour_scheme" type="text" class="form-control"
