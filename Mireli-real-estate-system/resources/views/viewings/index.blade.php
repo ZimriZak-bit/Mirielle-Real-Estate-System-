@@ -4,12 +4,12 @@
 
 @section('content')
     <h1 class="page-title">My viewings</h1>
-    <p class="page-lead">
+    <p  class="page-lead">
         Track every request, cancel a visit, or propose another time once management has approved one.
     </p>
 
     @if ($errors->any())
-        <div class="alert alert-error" role="alert">
+         <div class="alert alert-error" role="alert">
             <strong>That did not work:</strong>
             <ul>
                 @foreach ($errors->all() as $message)
@@ -77,12 +77,12 @@
                                     <form method="POST" action="{{ route('viewings.cancel', $viewing) }}"
                                           onsubmit="return confirm('Cancel this viewing? The slot becomes free for other clients.');">
                                         @csrf
-                                        <button type="submit" class="btn btn-outline">Cancel</button>
+                                        <button  type="submit" class="btn btn-outline">Cancel</button>
                                     </form>
-                                @endif
-
+                                @endif                                
+/**Done by Jewel */
                                 @if ($viewing->isApproved())
-                                    <form method="POST" action="{{ route('viewings.reschedule', $viewing) }}" class="mt-2">
+                                    <form  method="POST" action="{{ route('viewings.reschedule', $viewing) }}" class="mt-2">
                                         @csrf
                                         <div class="form-group">
                                             <label for="proposed-{{ $viewing->id }}">Propose another time</label>

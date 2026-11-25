@@ -5,7 +5,7 @@
 @section('content')
     <a href="{{ route('properties.show', $property) }}" class="text-muted">&larr; Back to the property</a>
 
-    <h1 class="page-title">Request a viewing</h1>
+     <h1 class="page-title">Request a viewing</h1>
     <p class="page-lead">
         Choose a date and time. Management approves every request before it is confirmed,
         and only available houses can be viewed.
@@ -33,12 +33,12 @@
                         &middot; {{ $property->size }}
                     @endif
                 </p>
-                <p class="text-muted">Price: KES {{ number_format((float) $property->price, 2) }}</p>
-                <p class="text-muted">Deposit: KES {{ number_format((float) $property->deposit_amount, 2) }}</p>
-                <span class="badge badge-{{ $property->status }}">{{ $property->status }}</span>
+                <p  class="text-muted">Price: KES {{ number_format((float) $property->price, 2) }}</p>
+                <p  class="text-muted">Deposit: KES {{ number_format((float) $property->deposit_amount, 2) }}</p>
+                <span  class="badge badge-{{ $property->status }}">{{ $property->status }}</span>
             </div>
         </div>
-
+/**Done by Jewel */
         <div class="card">
             <div class="card-body">
                 <form method="POST" action="{{ route('viewings.store', $property) }}" novalidate>

@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models;
 
 use Carbon\CarbonInterface;
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Live viewings (requested, approved, reschedule_requested) hold their slot.
  * Cancelled and rejected viewings keep their row for history but free the slot.
  */
-class Viewing extends Model
+class Viewing  extends Model
 {
     public const STATUS_REQUESTED = 'requested';
 
@@ -34,7 +35,7 @@ class Viewing extends Model
     public const STATUS_CANCELLED = 'cancelled';
 
     /** The frozen vocabulary from interface I10, in display order. */
-    public const STATUSES = [
+    public const  STATUSES = [
         self::STATUS_REQUESTED,
         self::STATUS_APPROVED,
         self::STATUS_RESCHEDULE_REQUESTED,
@@ -63,7 +64,7 @@ class Viewing extends Model
         'decided_by',
     ];
 
-    protected function casts(): array
+    protected function  casts(): array
     {
         return [
             'scheduled_at' => 'datetime',
@@ -93,6 +94,7 @@ class Viewing extends Model
     }
 
     /** Requests waiting for management: new requests and proposed new times. */
+    /**Done by Jewel */
     public function scopeAwaitingManagement(Builder $query): Builder
     {
         return $query->whereIn('status', [
@@ -146,7 +148,7 @@ class Viewing extends Model
 
     /**
      * INTERFACE I5: true only if this client has a completed viewing of this
-     * property. Pair 4 gates deposits on this; Pair 2 hides the deposit button.
+     * property. 
      */
     public static function isCompletedFor(User $client, Property $property): bool
     {
