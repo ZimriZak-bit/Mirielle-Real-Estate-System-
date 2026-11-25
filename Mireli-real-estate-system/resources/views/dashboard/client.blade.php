@@ -2,6 +2,19 @@
 
 @section('title', 'Dashboard | Mireli')
 
+
+
+
+
+<!-- client-dashboard.blade.php -->
+
+
+
+
+
+
+
+
 @section('content')
     <h1 class="page-title">Welcome, {{ auth()->user()->name }}</h1>
     <p class="page-lead">Your journey from browsing to owning, step by step.</p>
