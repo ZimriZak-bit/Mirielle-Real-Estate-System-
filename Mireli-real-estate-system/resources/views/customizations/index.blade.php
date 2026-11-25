@@ -19,7 +19,9 @@
             </ul>
         </div>
     @endif
+
 /**Done by Jewel */
+
     @if ($properties->isEmpty())
         <div class="placeholder-box mt-3">
             <span  class="badge">Nothing to customize yet</span>

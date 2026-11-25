@@ -19,7 +19,9 @@
             </ul>
         </div>
     @endif
+
 /**Done by Jewel */
+
     <div class="mt-2">
         <a  class="btn {{ $status === null ? '' : 'btn-outline' }}" href="{{ route('management.viewings.index') }}">All</a>
         @foreach ($statuses as $option)

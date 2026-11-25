@@ -32,7 +32,9 @@ class ViewingController  extends Controller
     }
 
     /** Request form, opened from the property detail page (interface I4). */
+
     /**Done by Jewel */
+    
     public function  create(Property $property): View|RedirectResponse
     {
         if (! $property->isAvailable()) {

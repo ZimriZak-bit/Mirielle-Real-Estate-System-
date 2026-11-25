@@ -40,7 +40,9 @@ class CustomizationController extends Controller
             'customizations' => $customizations,
         ]);
     }
+
 /**Done by Jewel */
+
     public function store(Request $request, Property $property): RedirectResponse
     {
         $client = $request->user();

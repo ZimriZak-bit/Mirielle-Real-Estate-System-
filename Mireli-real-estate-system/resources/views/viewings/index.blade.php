@@ -80,7 +80,9 @@
                                         <button type="submit" class="btn btn-outline">Cancel</button>
                                     </form>
                                 @endif
+                                
 /**Done by Jewel */
+
                                 @if ($viewing->isApproved())
                                     <form method="POST" action="{{ route('viewings.reschedule', $viewing) }}" class="mt-2">
                                         @csrf

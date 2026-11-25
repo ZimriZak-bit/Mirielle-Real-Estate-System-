@@ -20,7 +20,9 @@
         @csrf
         <button type="submit" class="btn">Mark completed</button>
     </form>
+
 /**Done by Jewel */
+
     <form method="POST" action="{{ route('management.viewings.reschedule', $viewing) }}" class="mt-2">
         @csrf
         <input class="form-control" type="datetime-local" name="scheduled_at"

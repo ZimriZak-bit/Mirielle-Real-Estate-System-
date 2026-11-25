@@ -30,7 +30,9 @@ class CustomizationSeeder  extends Seeder
 
             return;
         }
+
 /**Done by Jewel */
+
         Customization::updateOrCreate(
             [
                 'property_id' => $property->id,

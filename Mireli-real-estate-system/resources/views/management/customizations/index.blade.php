@@ -29,7 +29,9 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     /**Done by Jewel */
+                    
                     @foreach ($customizations as $customization)
                         <tr>
                             <td>

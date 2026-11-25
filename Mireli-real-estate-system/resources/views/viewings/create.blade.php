@@ -38,7 +38,9 @@
                 <span  class="badge badge-{{ $property->status }}">{{ $property->status }}</span>
             </div>
         </div>
+
 /**Done by Jewel */
+
         <div class="card">
             <div class="card-body">
                 <form method="POST" action="{{ route('viewings.store', $property) }}" novalidate>
