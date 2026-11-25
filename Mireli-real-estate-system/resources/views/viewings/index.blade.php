@@ -77,14 +77,12 @@
                                     <form method="POST" action="{{ route('viewings.cancel', $viewing) }}"
                                           onsubmit="return confirm('Cancel this viewing? The slot becomes free for other clients.');">
                                         @csrf
-                                        <button type="submit" class="btn btn-outline">Cancel</button>
+                                        <button  type="submit" class="btn btn-outline">Cancel</button>
                                     </form>
-                                @endif
-                                
+                                @endif                                
 /**Done by Jewel */
-
                                 @if ($viewing->isApproved())
-                                    <form method="POST" action="{{ route('viewings.reschedule', $viewing) }}" class="mt-2">
+                                    <form  method="POST" action="{{ route('viewings.reschedule', $viewing) }}" class="mt-2">
                                         @csrf
                                         <div class="form-group">
                                             <label for="proposed-{{ $viewing->id }}">Propose another time</label>
