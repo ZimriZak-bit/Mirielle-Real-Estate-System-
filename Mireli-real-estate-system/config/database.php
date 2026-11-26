@@ -137,7 +137,11 @@ return [
     | Redis Databases
     |--------------------------------------------------------------------------
     |
-Redis is an open source, fast, and advanced key-value store that also provides a richer body of commands than a typical key-value system such as Memcached. You may define your connection settings here.
+    |Redis is a fast , open-source key value store with a richer set of commands
+    |than a typical key-value system such as Memcached.
+    |You may define your connection settings here.
+    |
+    */
     'redis' => [
 
         'client' => env('REDIS_CLIENT', 'phpredis'),
