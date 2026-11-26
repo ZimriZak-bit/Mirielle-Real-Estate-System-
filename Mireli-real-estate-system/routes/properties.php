@@ -13,7 +13,7 @@ Route::middleware(['auth'])->prefix('management')->group(function () {
     Route::get('/properties/create', [PropertyController::class, 'create'])->name('management.properties.create');
     Route::post('/properties', [PropertyController::class, 'store'])->name('management.properties.store');
     
-    // Edit, Update, Delete properties
+    // Edit, Update, Delete
     Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('management.properties.edit');
     Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('management.properties.update');
     Route::delete('/properties/{property}', [PropertyController::class, 'destroy'])->name('management.properties.destroy');
