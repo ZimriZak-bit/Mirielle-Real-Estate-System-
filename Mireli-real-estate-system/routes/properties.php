@@ -3,7 +3,7 @@
 use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
-// --- CLIENT ROUTES ---
+// ---- CLIENT ROUTES ---
 Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');
 Route::get('/properties/{property}', [PropertyController::class, 'show'])->name('properties.show');
 
